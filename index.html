@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>URL Scheme Test</title>
+    <script>
+      function getParameterByName(name) {
+        var url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+
+      var token = getParameterByName("token");
+      if(token) {
+        setTimeout(function () {
+          window.location = "http://a.app.qq.com/o/simple.jsp?pkgname=growth.ren";
+        }, 2000);
+
+        window.location = "growth://home?token=" + token;
+      }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
